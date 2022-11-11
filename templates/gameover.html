@@ -1,49 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'gameframe.html' %}
 
-{% block title %}
-Boggle
-{% endblock title %}
+{% block bottom_display %}
+<div>
+   I loaded
+</div>
+{% endblock bottom_display %}
 
-{% block content %}
-    <table id="top-display">
-        <tr>
-            <td class="side-stat">
-                <div class="stat-label">SCORE:</div>
-                <div id="score-display">0</div>
-            </td>
-            <td class="center-stat">
-                <div>Games Played: <span id="games_played">{{ games_played }}</span></div>
-                <div>High Score: <span id="high_score">{{ high_score }}</span></div>
-            </td>
-            <td class="side-stat">
-                <div id="timer"></div>
-                <div class="stat-label">SECONDS LEFT!</div>
-            </td>
-        </tr>
-    </table>    
-
-    <table id="gameboard">
-        {% for y in range(5) %}
-            <tr id=f"row-{{y}}">
-            {% for x in range(5) %}
-                <td id=f"cell-{{x}}{{y}}" class="cell">
-                    {{board[y][x]}}
-                </td>
-            {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-
-    <table id="bottom-display">
-        <tr>
-            <td>
-                <div>I loaded</div>>
-            </td>
-        </tr>
-    </table>  
-
-
-
-
-
-{% endblock content %}

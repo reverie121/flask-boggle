@@ -1,5 +1,5 @@
 let score = 0
-let timer = 60
+let timer = 60 // FIX THIS AS NEEDED WHEN READY (set to 60)
 
 function timerColorChange(timer) {
     if (timer == 49) {
@@ -27,7 +27,7 @@ async function startTimer() {
             return await axios.post('/end-game', {score: score})
 
         }
-    }, 1000);
+    }, 1000); // FIX THIS AS NEEDED WHEN READY (set to 1000)
 }
 
 function word_scored_message(responseField, guess) {

@@ -47,8 +47,8 @@ def get_endgame_score():
     boggle_game.scores.append(new_score)
     boggle_game.high_score = max(boggle_game.scores)
     # should update original jinja gameboard template via passed in args
-    return redirect('/post-game')
+    return redirect('/end-game')
 
-@app.route('/post-game')
+@app.route('/end-game')
 def show_endgame():
     return render_template('gameover.html', board = session['board'], games_played = session['games_played'], high_score = session['high_score'])
