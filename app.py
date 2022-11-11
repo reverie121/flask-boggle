@@ -7,7 +7,7 @@ boggle_game = Boggle()
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "do*not*tell"
-# app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
 
@@ -43,9 +43,9 @@ def get_endgame_score():
     # increments games played total by 1
     boggle_game.games_played += 1
     # updates score array and high score
-    # new_score = request.form['score']
-    # boggle_game.scores.append(new_score)
-    # boggle_game.scores.high_score = max(boggle_game.scores)
+    new_score = request.json['score']
+    boggle_game.scores.append(new_score)
+    boggle_game.high_score = max(boggle_game.scores)
     # should update original jinja gameboard template via passed in args
     return redirect('/post-game')
 

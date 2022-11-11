@@ -1,5 +1,5 @@
 let score = 0
-let timer = 6 // FIX ME WHEN READY (set to 60)
+let timer = 60
 
 function timerColorChange(timer) {
     if (timer == 49) {
@@ -24,10 +24,10 @@ async function startTimer() {
         else {
             $('#timer').text(`0`);
             clearInterval(inter);
-            return await axios.post('/end-game', {'score': score})
+            return await axios.post('/end-game', {score: score})
 
         }
-    }, 100); // FIX ME WHEN READY (set to 1000)
+    }, 1000);
 }
 
 function word_scored_message(responseField, guess) {
@@ -62,13 +62,13 @@ async function submitGuess() {
     } else {
         word_not_scored_message(responseField, guess, response);
     }
-    $('#guess').val(''); // empties text input for word scoring
     return response.data
 }
 
 function adjust_score(){
     const points = $('#guess').val().length;
     score += points;
+
     if (score > $('#high_score').text()) {
         $('#high_score').text(`${score}`).css("color", "green");
         $('#score-display').text(`${score}`).css("color", "green");
@@ -84,6 +84,7 @@ $('#guess-form').submit(async function(e){
     if (response == 'ok') {
         adjust_score()
     }
+    $('#guess').val(''); // empties text input for word scoring
 });
 
 startTimer();
