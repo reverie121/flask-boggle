@@ -1,0 +1,12 @@
+{% extends 'gameframe.html' %}
+
+{% block bottom_display %}
+<div id="form-container">
+    <form id="guess-form">
+        <label for="guess"></label><input type="text" name="guess" id="guess">
+        <button>Score Word</button>
+    </form>
+    <div id="guess-response">&nbsp;</div>
+</div>
+{% endblock bottom_display %}
+

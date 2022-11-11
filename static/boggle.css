@@ -1,0 +1,133 @@
+#top-display {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    background-color: rgb(130, 197, 255);
+    border-spacing: 0.5vw;
+    border-radius: 1.5vw 1.5vw 0 0;
+    border: 0vw solid rgb(130, 197, 255);
+}
+
+#top-display td {
+    background-color: aliceblue;
+    border-radius: 1.5vw;
+    height: 7vw;
+    text-align: center;
+    color: #333
+}
+
+.side-stat {
+    width: 12vw;
+}
+
+.center-stat {
+    width: 24vw;
+    font-size: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.stat-label {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 1.3vw;
+}
+
+#score-display {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 3.5vw;
+}
+
+#timer {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 3.5vw;
+    color: rgb(77,150,25);
+}
+
+#gameboard {
+    margin: 0 auto;
+    padding: 0;
+    background-color: rgb(19, 145, 255);
+    border-spacing: 0.5vw;
+    border-radius: 1.5vw;
+    border: 0.5vw solid rgb(19, 145, 255);
+}
+
+.cell {
+    background-color: aliceblue;
+    border-radius: 1.5vw;
+    height: 10vw;
+    width: 10vw;
+    text-align: center;
+    font-size: 7vw;
+    color: #333
+}
+
+#bottom-display {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    background-color: rgb(130, 197, 255);
+    border-spacing: 0.5vw;
+    border-radius: 0 0 1.5vw 1.5vw;
+    border: 0vw solid rgb(130, 197, 255);
+}
+
+#bottom-display td {
+    background-color: aliceblue;
+    border-radius: 1.5vw;
+    height: 8vw;
+    width: 49vw;
+    text-align: center;
+    font-size: 7vw;
+    color: #333;
+}
+
+#form-container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+#guess-form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#guess-form input {
+    width: 60%;
+    height: 2vw;
+    background-color: white;
+    border: .4vw solid rgb(19, 145, 255);
+    border-right: 0;
+    border-radius: 0.4vw 0 0 0.4vw;
+    text-align: center;
+    font-size: 1.8vw;
+    color: rgb(19, 145, 255);
+}
+
+#guess-form button {
+    width: 30%;
+    height: 3.3vw;
+    background-color: rgb(130, 197, 255);
+    color: white;
+    text-shadow: -1px -1px 0 rgb(19, 145, 255), 1px -1px 0 rgb(19, 145, 255), -1px 1px 0 rgb(19, 145, 255), 1px 1px 0 rgb(19, 145, 255);
+    font-size: 1.8vw;
+    border: .4vw solid rgb(19, 145, 255);
+    border-radius: 0.4vw;
+}
+
+#guess-response {
+    width: 100%;
+    font-size: 1.5vw;
+    margin-top: 0.4vw;
+}
