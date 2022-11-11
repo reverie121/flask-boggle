@@ -1,5 +1,5 @@
 let score = 0
-let timer = 60
+let timer = 6 // FIX ME WHEN READY (set to 60)
 
 function timerColorChange(timer) {
     if (timer == 49) {
@@ -15,7 +15,7 @@ function timerColorChange(timer) {
 
 async function startTimer() {
     $('#timer').text(`${timer}`);
-    setInterval(async function() {
+    let inter = setInterval(async function() {
         if (timer > 1) {
             timer -= 1;
             timerColorChange(timer);
@@ -23,9 +23,11 @@ async function startTimer() {
         }
         else {
             $('#timer').text(`0`);
-            const response = await axios.post('/end-game', {'score': score})
+            clearInterval(inter);
+            return await axios.post('/end-game', {'score': score})
+
         }
-    }, 100);
+    }, 100); // FIX ME WHEN READY (set to 1000)
 }
 
 function word_scored_message(responseField, guess) {
