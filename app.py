@@ -11,11 +11,6 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
 
-def session_update():
-    """ Updates session data for games played and high score """
-    session['games_played'] = boggle_game.games_played
-    session['high_score'] = boggle_game.high_score
-
 @app.route('/')
 def render_index():
     return redirect('/gameboard')
@@ -26,6 +21,11 @@ def check_for_board():
     if not session.get('board'):
         boggle_game.board = boggle_game.make_board()
         session['board'] = boggle_game.board
+
+def session_update():
+    """ Updates session data with games played and high score """
+    session['games_played'] = boggle_game.games_played
+    session['high_score'] = boggle_game.high_score
 
 @app.route('/gameboard')
 def render_gameboard():
