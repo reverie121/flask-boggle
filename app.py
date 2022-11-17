@@ -13,42 +13,42 @@ debug = DebugToolbarExtension(app)
 
 @app.route('/')
 def render_index():
-    return redirect('/gameboard')
+    return render_template('welcome.html')
 
 def check_for_board():
     """ Check session storage to see if there is a currently valid board.
-        If not, create a new board and add to session storage. """
+        If not, initialize session storage. """
     if not session.get('board'):
-        boggle_game.board = boggle_game.make_board()
-        session['board'] = boggle_game.board
+        boggle_game = Boggle()
+        session['board'] = boggle_game.make_board()
+        session['games_played'] = 0
+        session['high_score'] = 0
 
-def session_update():
-    """ Updates session data with games played and high score """
-    session['games_played'] = boggle_game.games_played
-    session['high_score'] = boggle_game.high_score
-
-@app.route('/gameboard')
+@app.route('/play')
 def render_gameboard():
+    """ Looks for a current game, makes a new one if needed, and then renders the gameplay template. """
     check_for_board()
-    session_update()
     return render_template('gameplay.html', board = session['board'], games_played = session['games_played'], high_score = session['high_score'])
 
 @app.route('/make-guess')
 def return_guess():
+    """ Checks word submission for validity."""
     response = boggle_game.check_valid_word(session['board'], request.args['guess'])
     return jsonify(response)
 
 @app.route('/end-game', methods=['POST'])
 def get_endgame_score():
-    # increments games played total by 1
-    boggle_game.games_played += 1
-    # updates score array and high score
-    new_score = request.json['score']
-    boggle_game.scores.append(new_score)
-    boggle_game.high_score = max(boggle_game.scores)
-    # should update original jinja gameboard template via passed in args
-    return redirect('/end-game')
+    """ Updates session data and redirects to start a new game. """
+    session['games_played'] += 1
+    new_score = int(request.form.get('score'))
+    high_score = int(session['high_score'])
+    if new_score > high_score:
+        session['high_score'] = new_score
+    return redirect('/new-game')
 
-@app.route('/end-game')
+@app.route('/new-game')
 def show_endgame():
-    return render_template('gameover.html', board = session['board'], games_played = session['games_played'], high_score = session['high_score'])
+    """ Sets up a new game with a new board. """
+    boggle_game.set_up_game()
+    session['board'] = boggle_game.make_board()
+    return render_template('gameplay.html', board = session['board'], games_played = session['games_played'], high_score = session['high_score'])

@@ -3,17 +3,18 @@
 from random import choice
 import string
 
-
 class Boggle():
 
     def __init__(self):
 
+        self.set_up_game()
+
+    def set_up_game(self):
+        """ Initializes game """
+
         self.words = self.read_dict("words.txt")
         self.scored = set()
-        self.scores = []
-        self.high_score = 0
-        self.games_played = 0
-
+    
     def read_dict(self, dict_path):
         """Read and return all words in dictionary."""
 

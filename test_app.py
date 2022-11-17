@@ -12,18 +12,19 @@ class BoggleTestCase(TestCase):
         with app.test_client() as client:
             resp = client.get('/')
             html = resp.get_data(as_text=True)
-            self.assertEqual(resp.status_code, 302)
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<span id="bigger-boggle">Boggle</span>', html)
 
-    def test_gameboard(self):
+    def test_play(self):
         with app.test_client() as client:
-            resp = client.get('/gameboard')
+            resp = client.get('/play')
             html = resp.get_data(as_text=True)
             self.assertEqual(resp.status_code, 200)
             self.assertIn('<table id="gameboard">', html)
 
     def test_make_guess(self):
         with app.test_client() as client:
-            client.get('/gameboard')
+            client.get('/play')
             resp1 = client.get('/make-guess?guess=asdf')
             resp_str1 = resp1.get_data(as_text=True)
             resp2 = client.get('/make-guess?guess=wordy')
@@ -34,16 +35,16 @@ class BoggleTestCase(TestCase):
     
     def test_end_game_scoring(self):
         with app.test_client() as client:
-            client.get('/gameboard')
-            resp = client.post('/end-game', json={"score": "23"})
+            client.get('/play')
+            resp = client.post('/end-game', data={"score": "21"})
             self.assertEqual(resp.status_code, 302)
-            self.assertEqual(resp.location, "/end-game")
+            self.assertEqual(resp.location, "/new-game")
 
     def test_end_game_render(self):
         with app.test_client() as client:
-            client.get('/gameboard')
-            resp = client.post('/end-game', json={"score": "23"}, follow_redirects=True)
+            client.get('/play')
+            resp = client.post('/end-game', data={"score": "21"}, follow_redirects=True)
             html = resp.get_data(as_text=True)
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('I loaded', html)
-            self.assertNotIn('<button>Score Word</button>', html)
+            self.assertIn('<button>Score Word</button>', html)
+            self.assertNotIn('<button>New Game</button>', html)

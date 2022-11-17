@@ -1,3 +1,36 @@
+#introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+}
+
+h1 {
+    font-size: 5vw;
+    margin: 1vw auto 3vw auto;
+    padding: 0;
+}
+
+#bigger-boggle {
+    font-size: 8vw;
+    color: blue;
+}
+
+h2 {
+    font-size: 3.5vw;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#play {
+    margin: 2vw auto;
+    background-color: blue;
+    border-radius: 1vw;
+    color: white;
+    font-size: 3.5vw;
+}
+
 #top-display {
     margin: 0 auto;
     padding: 0;
@@ -130,4 +163,22 @@
     width: 100%;
     font-size: 1.5vw;
     margin-top: 0.4vw;
+}
+
+#new-game-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#new-game-button {
+    height: 5vw;
+    background-color: rgb(130, 197, 255);
+    color: white;
+    text-shadow: -1px -1px 0 rgb(19, 145, 255), 1px -1px 0 rgb(19, 145, 255), -1px 1px 0 rgb(19, 145, 255), 1px 1px 0 rgb(19, 145, 255);
+    font-size: 3vw;
+    border: .4vw solid rgb(19, 145, 255);
+    border-radius: 0.6vw;
 }

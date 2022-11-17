@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Boggle
+{% endblock title %}
+
+
+{% block content %}
+    <div id="introduction">
+        <h1>It's <span id="bigger-boggle">Boggle</span> Time</h1>
+        <h2>Rules</h2>
+        <ul>
+            <li>Game lasts for 60 seconds.</li>
+            <li>Search for words and enter as many unique words as you can.</li>
+            <li>To form a word connect adjacent letters.</li>
+            <li>Adjacency can be orthagonal and/or diagonal.</li>
+            <li>You may change direction as many times as you want.</li>
+            <li>Letter instances may only be used once per word.</li>
+            <li>Words may be one or more letters long.</li>
+            <li>Scored words are worth 1 point per letter.</li>
+        </ul>
+            <a href="/play"><button id="play">PLAY</button></a>
+    </div>
+
+
+
+{% endblock content %}
